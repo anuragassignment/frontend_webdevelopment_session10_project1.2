@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Tasks List</div>
+  <div class="panel-body">
+    <!-- display the message if no tasks are avaialble -->
+    <div class="jumbotron" *ngIf="!taskLst.length > 0">
+      <p class="text-center lead">Hurray! No task Available</p>
+    </div>
+    <!-- hides the table if task list array's length is less than 1 -->
+    <table class="table" *ngIf="taskLst.length > 0">
+      <thead>
+        <tr>
+          <th class="col-md-1">#</th>
+          <th class="col-md-3">Task Title</th>
+          <th class="col-md-5">Task Description</th>
+          <th class="col-md-3">Date of Completion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- uses the structural directive to display the data consumed through service && custom direcitve appstatus changes bg color based on date-->
+        <tr *ngFor="let task of taskLst; let i = index" [taskDt]="task.date" appStatus class="text-center">
+          <td>{{i+1}}</td>
+          <td>{{task.title}}</td>
+          <td>{{task.description}}</td>
+          <td>{{task.date}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
